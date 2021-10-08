@@ -1,0 +1,4 @@
+text = '米202109'
+
+for position,i in enumerate(text,0):
+    print (i, position)
