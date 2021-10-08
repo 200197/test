@@ -3,6 +3,8 @@ import numpy as np
 import os
 import glob
 
+outdir = 'C:/Users/hhng/Desktop/New folder/split item'
+
 def splite_data(date):
     num = str(date)
     extension = 'xlsx'
@@ -20,6 +22,12 @@ def splite_data(date):
 
     for i in category:
         outfilename = i + num + '.csv'
-        df[df['category'] == i].to_csv(outfilename, encoding='utf-8-sig')
+        path = os.path.join(outdir, outfilename)
+        df[df['category'] == i].to_csv(path, encoding='utf-8-sig')
+
+    print(category)
 
 splite_data(202107)
+splite_data(202108)
+splite_data(202109)
+
