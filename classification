@@ -2,37 +2,25 @@ import pandas as pd
 import numpy as np
 import os
 import glob
+import Hktvmalltexting as hkmtext
 
 outdir = 'C:/Users/hhng/Desktop/New folder/classification'
 os.chdir("C:/Users/hhng/Desktop/New folder/split item")
 
-def rice(text):
-    if '茉莉香米' in text:
-        return '101'
-    elif '絲苗米' in text:
-        return '102'
-    elif '珍珠米' in text or '短身米' in text:
-        return '201'
-    else:
-        return "others"
-def pasta(text):
-    if '扁意粉' in text or '扁意大利粉' in text:
-        return '102'
-    elif '意大利粉' in text:
-        return '101'
-    elif '通心粉' in text:
-        return '201'
-    elif '螺絲粉' in text:
-        return '202'
-
 def item(n):
-    item = str(n)
+    Ch_word = hkmtext.Chinese_word(n)
+    function = hkmtext.function_name(n)
+
     files = glob.glob("*.csv")
-    files_csv = [f for f in files if f[0:1] == item]
+    files_csv = [f for f in files if f[0:len(Ch_word)] == Ch_word]
 
     for files in files_csv:
          df = pd.read_csv(files)
-         df['item'] = df['productname'].apply(rice)
+         df['item'] = df['productname'].apply(function)
          df["Rank"] = df.groupby("item")["salesnumber"].rank(method='dense', ascending=False)
          path = os.path.join(outdir, files)
          df.to_csv(path, encoding='utf-8-sig')
+
+item("rice")
+item("pasta")
+item("noodle")
