@@ -1,0 +1,67 @@
+def Chinese_word(text):
+    if text == "rice":
+       return "米"
+    elif text == "pasta":
+        return "意粉 通心粉"
+    elif text == "noodle":
+        return "即食麵"
+    else:
+        return ""
+
+def function_name(text):
+    if text == "rice":
+       return rice
+    elif text == "pasta":
+        return pasta
+    elif text =="noodle":
+        return noodle
+    else:
+        return ""
+
+def rice(text):
+    if '茉莉香米' in text:
+        return '101'
+    elif '絲苗米' in text:
+        return '102'
+    elif '珍珠米' in text or '短身米' in text:
+        return '201'
+    else:
+        return "others"
+def pasta(text):
+    if '扁意粉' in text or '扁意大利粉' in text:
+        return '102'
+    elif '意大利粉' in text:
+        return '101'
+    elif '通心粉' in text or '通粉' in text:
+        return '201'
+    elif '螺絲粉' in text:
+        return '202'
+    elif '直通粉' in text:
+        return '203'
+    else:
+        ""
+def noodle(text):
+    if '蝦子麵' in text:
+        return '101'
+    elif '刀削麵' in text:
+        return '102'
+    elif '瑤柱麵' in text:
+        return '103'
+    elif '有機麵線' in text or '有機紅藜麥麵' in text:
+        return '104'
+    elif '關廟麵' in text:
+        return '105'
+    elif '養生麵條' in text:
+        return '106'
+    elif '彈牙麵' in text:
+        return '107'
+    elif '擔仔麵' in text:
+        return '108'
+    elif '全蛋麵' in text:
+        return '109'
+    elif '菠菜麵' in text or '蒟蒻麵' in text:
+        return '110'
+    else:
+        ""
+
+
