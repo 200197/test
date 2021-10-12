@@ -1,0 +1,46 @@
+import pandas as pd
+import numpy as np
+import os
+import glob
+
+def noodle(text):
+    if '扁意粉' in text or '扁意大利粉' in text:
+        return '102'
+    elif '意大利粉' in text:
+        return '101'
+    elif '通心粉' in text or '通粉' in text:
+        return '201'
+    elif '螺絲粉' in text:
+        return '202'
+    elif '直通粉' in text:
+        return '203'
+    elif '蝦子麵' in text:
+        return '301'
+    elif '刀削麵' in text:
+        return '302'
+    elif '瑤柱麵' in text:
+        return '303'
+    elif '有機麵線' in text or '有機紅藜麥麵' in text:
+        return '304'
+    elif '關廟麵' in text:
+        return '305'
+    elif '養生麵條' in text:
+        return '306'
+    elif '彈牙麵' in text:
+        return '307'
+    elif '擔仔麵' in text:
+        return '308'
+    elif '全蛋麵' in text:
+        return '309'
+    elif '菠菜麵' in text or '蒟蒻麵' in text:
+        return '310'
+    else:
+        ""
+
+df = pd.read_excel("即食麵 麵  意粉_20210722-1114.xlsx", index_col=0, engine='openpyxl')
+df['salesnumber'] = df['salesnumber'].str.replace(',', '').astype(np.float64)
+df['item'] = df['productname'].apply(noodle)
+df["Rank"] = df.groupby("item")["salesnumber"].rank(method='dense', ascending=False)
+
+df.to_csv("即食麵 麵  意粉_202107.csv", encoding='utf-8-sig')
+
