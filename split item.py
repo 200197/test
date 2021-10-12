@@ -30,4 +30,4 @@ def splite_data(date):
 splite_data(202107)
 splite_data(202108)
 splite_data(202109)
-
+  
